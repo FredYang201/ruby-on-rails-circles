@@ -1,0 +1,19 @@
+<h1>User List</h1>
+
+<div class="row">
+    <div class="col-sm-12">
+        <table class="table">
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th></th>
+            </tr>
+
+            <% if @users %>
+                <% @users.each do |user| %>
+                  <%= render partial: "users/one_new", locals: {user: user} %>
+                <% end -%>   
+            <% end -%>
+        </table>
+    </div>
+</div>

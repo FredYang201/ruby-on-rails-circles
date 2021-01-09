@@ -1,0 +1,30 @@
+<h1>Admin User Page</h1>
+
+
+<div class="row">
+  <div class="col-sm-12">
+    <form action="<%= search_admin_users_path %>" method="get">
+      Username: <input type="text" name="username" value="<%= params[:username] %>"/>
+      <input type='submit' name="search" />
+    </form>
+    <table class="table">
+      <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th></th>
+      </tr>
+
+      <% if @users %>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.id %></td>
+            <td><%= user.username %></td>
+            <td></td>
+          </tr>
+        <% end -%>
+      <% end -%>
+    </table>
+
+    <%= will_paginate  @users %>
+  </div>
+</div>

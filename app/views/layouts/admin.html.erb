@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Circles Management</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+<body>
+<header name="top">
+  <nav class="navbar navbar-default nav-color" role="navigation" id="nav">
+    <div class="container">
+      <div class="navbar-header nav-color">
+        <button id="nav_collapse" type="button" class="navbar-toggle toggle-btn" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="fa fa-bars fa-lg"></span>
+        </button>
+        <a class="navbar-brand" href='/'>Circles User Management</a>
+      </div>
+
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-right navbar-nav navbar-light custom">
+          <li><a href="/">Home</a></li>
+          <li><a href="<%= admin_users_path %>">Users Management</a></li>
+
+          <% if session[:user_id] %>
+            <li>
+              <%= link_to "#{User.find(session[:user_id].to_i).username} Logout",
+                          session_path(session[:user_id]), method: 'delete' %>
+            </li>
+          <% else %>
+            <li>
+              <%= link_to "Login", new_session_path %>
+            </li>
+
+          <% end -%>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+<div class="container body-offset">
+  <% if flash[:notice] %>
+    <div class="alert alert-danger">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
+
+</div>
+
+<div class="container">
+  <%= yield %>
+</div>
+</body>
+</html>

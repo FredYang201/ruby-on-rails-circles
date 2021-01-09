@@ -1,0 +1,31 @@
+<h1>用户注册</h1>
+
+<div class="row">
+    <div class="col-sm-5">
+    
+    <%= form_for @user, url: users_path, method: :post do |f| %>
+
+        <% #错误案例 %>
+        <div class="form-group">
+            <ul class="list-unstyled">
+                <% @user.errors.messages.values.flatten.each do |error| %>
+                    <li><i class='fa fa-exclamation-circle'></i><%= error %></li>
+                <% end -%>
+            </ul>
+        </div>
+        
+        <div class="form-group">
+            <%= f.text_field :username, class: 'form-control', placeholder: 'Username' %>
+        </div>
+
+        <div class="form-group">
+            <%= f.text_field :password, class: 'form-control', placeholder: 'Password' %>
+        </div>
+
+        <%= f.submit 'Register', class: 'btn btn-primary' %>
+        <%= link_to 'Login', new_session_path %>
+        <% end -%>
+    </div>
+
+    <div class='col-sm-7'></div>
+</div>
